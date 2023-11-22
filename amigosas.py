@@ -142,3 +142,12 @@ class AmigoSAS:
         except AttributeError as e:
             print('Query inválida')
             return
+
+    @reconecta
+    def chmod_sas(self, lib_path: str, table: str) -> None:
+        """
+        Atuailza as permissões da tablea especificada, permitindo leitura do grupo.
+        """
+        return self.session.submitLOG(f"""
+                                       x 'chmod 744 {lib_path}/{table}.sas7bdat';
+                                       """)
